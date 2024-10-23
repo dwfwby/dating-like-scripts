@@ -1,3 +1,6 @@
+// Add this script to dev tools executer scripts when oppened dating tab
+// Exec on site loveplanet.ru/a-look
+
 const LOADERTIMEOUT = 5000;
 
 function getLoader(){
