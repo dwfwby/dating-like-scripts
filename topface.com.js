@@ -2,10 +2,10 @@
 
 const YESQUERY = ".js-btn-like";
 const BUTTONTIMEOUT = 5000;
-const WAITCLICK = 2000;
+const WAITCLICK = 500;
 
 function sleep(delay){
-  return new Promise( r => r(setTimeout(delay)));
+  return new Promise( r => setTimeout(r, delay));
 }
 
 function getButton(query){
@@ -21,7 +21,6 @@ function getButton(query){
         }, 100)
     })
 }
-
 let yesButton;
 while(yesButton = await getButton(YESQUERY)){
 
