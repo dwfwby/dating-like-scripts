@@ -1,4 +1,4 @@
-// Add this script to dev tools executer scripts when oppened dating tab
+// Add this script to dev tools executer scripts when oppened tab with list of your likes
 // Exec on site loveplanet.ru/a-look
 
 const LOADERTIMEOUT = 5000;
