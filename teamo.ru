@@ -22,7 +22,7 @@ function getButton(query){
 
 let nextButton;
 while(nextButton = await getButton(NEXTQUERY)){
-    const yesButton = await getButton(YESQUERY));
+    const yesButton = await getButton(YESQUERY);
     if(!yesButton)
         break;
     
