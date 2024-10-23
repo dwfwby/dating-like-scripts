@@ -27,7 +27,7 @@ while(nextButton = await getButton(NEXTQUERY)){
         break;
     
     yesButton.onclick = async function(){
-        await new Promise((resolve, reject) => resolve(setTimeout(WAITLIKE)))
+        await new Promise(r => setTimeout(r, WAITLIKE))
         nextButton.click();
     }
     yesButton.click();
