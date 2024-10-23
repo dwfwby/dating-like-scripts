@@ -1,4 +1,5 @@
 // Add this script to dev tools executer scripts when oppened profile in dating tab
+// Exec on site teamo.ru/faces
 
 const NEXTQUERY = ".profile-switcher-button.profile-switcher-button_next";
 const YESQUERY = ".faces-voter__button_yes";
