@@ -7,7 +7,7 @@ const BUTTONTIMEOUT = 5000;
 const WAITCLICK = 2000;
 
 function sleep(delay){
-  return new Promise( r => r(setTimeout(delay)));
+  return new Promise( r => setTimeout(r, delay));
 }
 
 function getButton(query){
