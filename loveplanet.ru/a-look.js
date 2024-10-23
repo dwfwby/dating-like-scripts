@@ -1,5 +1,5 @@
 // Add this script to dev tools executer scripts when oppened tab with list of your liked
-// Exec on site loveplanet.ru/a-look
+// Exec on site loveplanet.ru/a-look/time-4
 
 const LOADERTIMEOUT = 5000;
 
