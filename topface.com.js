@@ -1,4 +1,5 @@
 // Add this script to dev tools executer scripts when oppened dating tab
+// Exec on site topface.com/dating/type/all/
 
 const YESQUERY = ".js-btn-like";
 const BUTTONTIMEOUT = 5000;
