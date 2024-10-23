@@ -22,9 +22,12 @@ while(loader = await getLoader()){
     if(loader.value)
         window.scrollTo(0, document.body.scrollHeight);
     else{
-        const elites = document.querySelectorAll(".elite");
-const list = Array.from(elites).map((e) => e.querySelector(".btn").href);
-        console.log(list);
+        const scrollBlock = document.querySelector("#scroll_block");
+        Array.from(scrollBlock.children).forEach((e) => {
+            const isElite = e.classList.contains("elite");
+            if(!isElite)
+                e.remove();
+        })
         break;
     }
 }
