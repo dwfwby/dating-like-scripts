@@ -1,4 +1,5 @@
 // Add this script to dev tools executer scripts when oppened profile in dating tab
+// Exec on site loveplanet.ru/a-searchlik
 
 const NOQUERY = "#likes-btn-no";
 const YESQUERY = "#likes-btn-yes";
