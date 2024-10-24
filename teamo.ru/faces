@@ -1,9 +1,8 @@
 // Add this script to dev tools executer scripts when oppened dating tab
 // Exec on site teamo.ru/faces
 
-const NEXTQUERY = ".profile-switcher-button.profile-switcher-button_next";
 const YESQUERY = ".faces-voter__button_yes";
-const BUTTONTIMEOUT = 5000;
+const ELEMENTTIMEOUT = 5000;
 const WAITLIKE = 500;
 
 function checker(callback, delay, timeout){
@@ -24,16 +23,13 @@ function getElement(query, timeout){
     return checker(function(){ return document.querySelector(query)}, 100, timeout);
 }
 
-let nextButton;
-while(nextButton = await getElement(NEXTQUERY)){
-    const yesButton = await getElement(YESQUERY);
+const sleep = delay => new Promise( r => setTimeout(r, delay))
+
+let yesButton;
+while(yesButton = await getElement(YESQUERY, ELEMENTTIMEOUT)){
     if(!yesButton)
         break;
     
-    yesButton.onclick = async function(){
-        await new Promise(r => setTimeout(r, WAITLIKE))
-        nextButton.click();
-    }
     yesButton.click();
-
+    await sleep(500);
 }
