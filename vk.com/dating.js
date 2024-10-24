@@ -32,10 +32,10 @@ function isAnother(query, el){
 
 while(true){
     let like = await getElement(LIKEQUERY, 5000);
-    if(like)
-        like.click();
-    else
+    if(!like)
         break;
+    
+    like.click();
     if(await isAnother(LIKEQUERY, like))
         sleep(500);
 }
