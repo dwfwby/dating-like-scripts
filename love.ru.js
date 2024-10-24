@@ -1,4 +1,4 @@
-// Add this script to dev tools executer scripts when oppened profile in dating tab
+// Add this script to dev tools executer scripts when oppened dating tab
 // Exec on site love.ru/znakomstva
 
 const YESQUERY = "#sympathy_btn_send";
