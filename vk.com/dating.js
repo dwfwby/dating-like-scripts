@@ -1,3 +1,6 @@
+// Add this script to dev tools executer scripts when oppened dating tab
+// Exec on site vk.com/dating
+
 const LIKEQUERY = "div[aria-label=like]";
 
 function checker(callback, delay, timeout){
