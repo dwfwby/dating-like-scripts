@@ -1,4 +1,4 @@
-// Add this script to dev tools executer scripts when oppened profile in dating tab
+// Add this script to dev tools executer scripts when oppened search list tab
 // Exec on site teamo.ru/search
 
 const NEXTQUERY = ".profile-switcher-button.profile-switcher-button_next";
