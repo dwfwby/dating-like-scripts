@@ -1,16 +1,22 @@
 async function sdf34dsf(){
-    function checker(callback, delay, timeout){
-        return new Promise((resolve, reject) => {
-            const startTime = new Date().getTime();
-            setInterval(async () => {
-                const time = new Date().getTime();
-                const result = await callback();
-                if(result)
-                    resolve(result)
-                else if(time - startTime >= timeout)
-                    resolve();
-            }, delay)
-        })
+    async function checker(callback, delay, timeout){
+        let resolver;
+        const promise = new Promise( r => resolver = r);
+        const startTime = new Date().getTime();
+        const id = setInterval(async () => {
+            const time = new Date().getTime();
+            const result = await callback();
+            
+            if(result)
+                resolver(result);
+            else if(time - startTime >= timeout)
+                resolver();
+            
+        }, delay);
+        
+        await promise;
+        clearInterval(id);
+        return await promise;
     }
     
     function getElement(query, timeout){
