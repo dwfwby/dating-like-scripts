@@ -1,35 +1,10 @@
-// Add this script to dev tools executer scripts when oppened dating tab
+// Add this script with code from file "script.js" to dev tools executer scripts when oppened dating tab
 // Exec on site teamo.ru/faces
 
-const YESQUERY = ".faces-voter__button_yes";
-const ELEMENTTIMEOUT = 5000;
-const WAITLIKE = 500;
-
-function checker(callback, delay, timeout){
-    return new Promise((resolve, reject) => {
-        const startTime = new Date().getTime();
-        setInterval(() => {
-            const time = new Date().getTime();
-            const result = callback();
-            if(result)
-                resolve(result)
-            else if(time - startTime >= timeout)
-                resolve();
-        }, delay)
-    })
-}
-
-function getElement(query, timeout){
-    return checker(function(){ return document.querySelector(query)}, 100, timeout);
-}
-
-const sleep = delay => new Promise( r => setTimeout(r, delay))
-
-let yesButton;
-while(yesButton = await getElement(YESQUERY, ELEMENTTIMEOUT)){
-    if(!yesButton)
-        break;
-    
-    yesButton.click();
-    await sleep(500);
+const config = {
+    yesquery: ".faces-voter__button_yes",
+    comparedquery: ".faces",
+    comparedtimeout: 5000,
+    elementtimeout: 5000,
+    waitlike: 500
 }
