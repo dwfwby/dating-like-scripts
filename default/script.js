@@ -49,7 +49,7 @@ async function sdf34dsf(){
         }
 
         if(config.limitquery){
-            const limitEl = await getElement(config.limitquery, config.elementtimeout);
+            const limitEl = await getElement(config.limitquery, config.limittimeout);
             
             if(limitEl)
                 break;
