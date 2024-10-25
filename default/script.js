@@ -10,7 +10,7 @@ async function sdf34dsf(){
             if(result)
                 resolver(result);
             else if(time - startTime >= timeout)
-                resolver();
+                resolver(false);
         }, delay);
         
         await promise;
@@ -26,7 +26,7 @@ async function sdf34dsf(){
         return setIntervalMax(async function(){ 
             const res = await callback();
             
-            return res != old && res;
+            return [res !== old, res];
         }, 100, timeout);
     }
     
@@ -34,11 +34,21 @@ async function sdf34dsf(){
     
     const getCompared = async () => (await getElement(config.comparedquery, config.comparedtimeout))?.outerHTML;
     
-    let compared, newCompared, yesButton;
+    let compared, yesButton;
     
     const hasNewCompared = () => onChange(async () => await getCompared(), compared, config.comparedtimeout);
     
-    while(newCompared = await hasNewCompared()){
+    while(true){
+        if(config.comparedquery){
+            const [isNew, newCompared] = await hasNewCompared();
+            
+            if(!isNew)
+                break;
+            
+            compared = compared;
+        }
+            
+        
         yesButton = await getElement(config.yesquery, config.elementtimeout);
 
         if(!yesButton && config.skipquery)
@@ -46,8 +56,6 @@ async function sdf34dsf(){
         
         if(!yesButton)
             break;
-        
-        compared = newCompared;
         
         await sleep(config.waitlike);
         yesButton.click();
