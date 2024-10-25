@@ -47,6 +47,13 @@ async function sdf34dsf(){
             
             compared = compared;
         }
+
+        if(config.limitquery){
+            const limitEl = await getElement(config.limitquery, config.elementtimeout);
+            
+            if(limitEl)
+                break;
+        }
             
         
         yesButton = await getElement(config.yesquery, config.elementtimeout);
