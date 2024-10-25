@@ -9,21 +9,26 @@ function sleep(delay){
   return new Promise( r => setTimeout(r, delay));
 }
 
-function getButton(query){
+function checker(callback, delay, timeout){
     return new Promise((resolve, reject) => {
         const startTime = new Date().getTime();
         setInterval(() => {
-            const time = new Date().getTime()
-            let nextButton = document.querySelector(query);
-            if(nextButton)
-                resolve(nextButton)
-            else if(time - startTime >= BUTTONTIMEOUT)
+            const time = new Date().getTime();
+            const result = callback();
+            if(result)
+                resolve(result)
+            else if(time - startTime >= timeout)
                 resolve();
-        }, 100)
+        }, delay)
     })
 }
+
+function getElement(query, timeout){
+    return checker(function(){ return document.querySelector(query)}, 100, timeout);
+}
+
 let yesButton;
-while(yesButton = await getButton(YESQUERY)){
+while(yesButton = await getElement(YESQUERY, BUTTONTIMEOUT)){
 
     await sleep(WAITCLICK);    
     yesButton.click();
