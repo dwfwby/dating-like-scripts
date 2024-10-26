@@ -2,7 +2,7 @@ async function sdf34dsf(){
     async function setIntervalMax(callback, delay, timeout){
         let resolver;
         const startTime = new Date().getTime();
-        const promise = new Promise(r => resolver = r });
+        const promise = new Promise(r => resolver = r );
         const intervalId = setInterval(async () => {
             const time = new Date().getTime();
             const result = await callback();
