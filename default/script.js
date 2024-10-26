@@ -58,8 +58,8 @@ async function sdf34dsf(){
         
         yesButton = await getElement(config.yesquery, config.elementtimeout);
 
-        if(!yesButton && config.skipquery)
-            yesButton = await getElement(config.skipquery, config.elementtimeout);
+        if(!yesButton && config.alternativequery)
+            yesButton = await getElement(config.alternativequery, config.elementtimeout);
         
         if(!yesButton)
             break;
