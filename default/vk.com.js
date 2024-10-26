@@ -1,4 +1,5 @@
 // Add this script to dev tools executer scripts when oppened dating tab
+// Choise JS context to app frame
 // Exec on site vk.com/dating
 
 const config = {
