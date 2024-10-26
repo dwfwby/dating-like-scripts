@@ -3,7 +3,7 @@
 
 const config = {
     yesquery: "#sympathy_btn_send",
-    skipquery: "#sympathy_btn_reject",
+    alternativequery: ["#sympathy_btn_reject"],
     elementtimeout: 5000,
     waitlike: 500
 }
