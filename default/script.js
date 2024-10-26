@@ -1,21 +1,23 @@
 async function sdf34dsf(){
-    async function setIntervalMax(callback, delay, timeout){    
-        let resolver;
-        const promise = new Promise( r => resolver = r);
+    async function setIntervalMax(callback, delay, timeout){
         const startTime = new Date().getTime();
-        const id = setInterval(async () => {
-            const time = new Date().getTime();
-            const result = await callback();
-            
-            if(result)
-                resolver(result);
-            else if(time - startTime >= timeout)
-                resolver(false);
-        }, delay);
+        let resolver, id;
+        const promise = new Promise((r) => {
+            resolver = r;
+            id = setInterval(async () => {
+                const time = new Date().getTime();
+                const result = await callback();
+                
+                if(result)
+                    resolver(result);
+                else if(time - startTime >= timeout)
+                    resolver(false);
+            }, delay);
+        });
         
-        await promise;
-        clearInterval(id);
-        return await promise;
+        promise.then(() => clearInterval(id));
+        
+        return promise
     }
     
     function getElement(query, timeout){
@@ -34,7 +36,7 @@ async function sdf34dsf(){
     
     const getCompared = async () => (await getElement(config.comparedquery, config.comparedtimeout))?.outerHTML;
     
-    let compared, yesButton;
+    let compared, button;
     
     const hasNewCompared = () => onChange(async () => await getCompared(), compared, config.comparedtimeout);
     
@@ -56,16 +58,28 @@ async function sdf34dsf(){
         }
             
         
-        yesButton = await getElement(config.yesquery, config.elementtimeout);
+        button = await getElement(config.yesquery, config.elementtimeout);
 
-        if(!yesButton && config.alternativequery)
-            yesButton = await getElement(config.alternativequery, config.elementtimeout);
+        if(!button && config.alternativequery){
+            let resolver;
+            const promise = new Promise( r => resolver = r );
+            
+            config.alternativequery.forEach((query, i) => {
+                const searcher = getElement(query, config.elementtimeout);
+                const isLast = i !== config.alternativequery.length - 1;
+                
+                searcher.then( v => (v || isLast) && resolver(v));
+            })
+
+
+            button = await promise;
+        }
         
-        if(!yesButton)
+        if(!button)
             break;
         
         await sleep(config.waitlike);
-        yesButton.click();
+        button.click();
     }
 }
 
