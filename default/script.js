@@ -1,21 +1,20 @@
 async function sdf34dsf(){
     async function setIntervalMax(callback, delay, timeout){
+        let resolver;
         const startTime = new Date().getTime();
-        let resolver, id;
-        const promise = new Promise((r) => {
-            resolver = r;
-            id = setInterval(async () => {
-                const time = new Date().getTime();
-                const result = await callback();
-                
-                if(result)
-                    resolver(result);
-                else if(time - startTime >= timeout)
-                    resolver(false);
-            }, delay);
-        });
+        const promise = new Promise(r => resolver = r });
+        const intervalId = setInterval(async () => {
+            const time = new Date().getTime();
+            const result = await callback();
+            
+            if(result)
+                resolver(result);
+            else if(time - startTime >= timeout)
+                resolver(false);
+        }, delay);
         
-        promise.then(() => clearInterval(id));
+        
+        promise.then(() => clearInterval(intervalId));
         
         return promise
     }
